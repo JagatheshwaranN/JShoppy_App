@@ -13,7 +13,7 @@ const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
 
     const addToCart = async (itemId, size) => {
-        if(!size) {
+        if (!size) {
             toast.error('Select Product Size');
             return;
         }
@@ -33,18 +33,48 @@ const ShopContextProvider = (props) => {
 
     const getCartCount = () => {
         let totalCount = 0;
-        for(const items in cartItems) {
-            for(const item in cartItems[items]) {
+        for (const items in cartItems) {
+            for (const item in cartItems[items]) {
                 try {
-                    if(cartItems[items][item] > 0){
+                    if (cartItems[items][item] > 0) {
                         totalCount += cartItems[items][item];
                     }
                 } catch (error) {
-                    
+
                 }
             }
         }
         return totalCount;
+    }
+
+    const updateCartQuantity = async (itemId, size, quantity) => {
+        let cartData = structuredClone(cartItems);
+        cartData[itemId][size] = quantity;
+        setCartItems(cartData);
+    }
+
+    const getCartAmount = () => {
+        let totalAmount = 0;
+        for (const items in cartItems) {
+            let itemInfo = products.find((product) => product._id === items)
+            for (const item in cartItems[items]) {
+                try {
+                    if (cartItems[items][item] > 0) {
+                        totalAmount += itemInfo.price * cartItems[items][item];
+                    }
+                } catch (error) {
+
+                }
+            }
+        }
+        return totalAmount;
+    }
+
+    const getTaxAmount = () => {
+        let cartTotal = getCartAmount();
+        let taxPercent = 5.5;
+        let taxAmount = cartTotal * taxPercent / 100;
+        return taxAmount;
     }
 
     // useEffect(()=>{
@@ -61,7 +91,10 @@ const ShopContextProvider = (props) => {
         setShowSearch,
         cartItems,
         addToCart,
-        getCartCount
+        getCartCount,
+        updateCartQuantity,
+        getCartAmount,
+        getTaxAmount
     }
 
     return (
