@@ -2,10 +2,18 @@
 @import "tailwindcss";
 
 .active {
-    background-color: #8AFFFF;
-    border-color: #00A3A3;
+  background-color: #8AFFFF;
+  border-color: #00A3A3;
 }
 
 * {
   font-family: 'Outfit', sans-serif;
+}
+
+select,
+input,
+textarea {
+  border: 1px solid #c2c2c2;
+  outline-color: #00A3A3;
+  border-radius: 4px;
 }
