@@ -1,25 +1,64 @@
-import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { assets } from '../assets/assets'
 
 const Sidebar = () => {
+
+  const baseStyle =
+    "flex items-center md:justify-start justify-center gap-4 px-3 md:px-6 py-4 rounded-xl border transition-all duration-200"
+
+  const activeStyle =
+    "border-l-4 border-black bg-gray-50"
+
+  const inactiveStyle =
+    "border-gray-200 text-gray-600 hover:bg-gray-50"
   return (
-    <div className='w-[18%] min-h-screen border-r-2'>
-        <div className='flex flex-col gap-4 pt-6 pl-[20%] text-[15px]'>
-            <NavLink className='flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l' to="/add">
-                <img className='w-5 h-5' src={assets.add_icon} />
-                <p className='hidden md:block'>Add Items</p>
-            </NavLink>
-             <NavLink className='flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l' to="/list">
-                <img className='w-5 h-5' src={assets.order_icon} />
-                <p className='hidden md:block'>List Items</p>
-            </NavLink>
-             <NavLink className='flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l' to="/orders">
-                <img className='w-5 h-5' src={assets.order_icon} />
-                <p className='hidden md:block'>Orders</p>
-            </NavLink>
-        </div>
-      
+    <div className='w-[70px] md:w-[240px] min-h-screen border-r bg-white shadow-sm'>
+
+      <div className='flex flex-col gap-4 pt-6 px-2'>
+
+        <NavLink
+          to="/add"
+          className={({ isActive }) =>
+            `${baseStyle} ${isActive ? activeStyle : inactiveStyle}`
+          }
+        >
+          <img
+            className='w-6 h-6 md:opacity-100 opacity-70'
+            src={assets.add_icon}
+            alt=""
+          />
+          <p className='hidden md:block font-medium'>Add Items</p>
+        </NavLink>
+
+        <NavLink
+          to="/list"
+          className={({ isActive }) =>
+            `${baseStyle} ${isActive ? activeStyle : inactiveStyle}`
+          }
+        >
+          <img
+            className='w-6 h-6 md:opacity-100 opacity-70'
+            src={assets.list_icon}
+            alt=""
+          />
+          <p className='hidden md:block font-medium'>List Items</p>
+        </NavLink>
+
+        <NavLink
+          to="/orders"
+          className={({ isActive }) =>
+            `${baseStyle} ${isActive ? activeStyle : inactiveStyle}`
+          }
+        >
+          <img
+            className='w-6 h-6 md:opacity-100 opacity-70'
+            src={assets.order_icon}
+            alt=""
+          />
+          <p className='hidden md:block font-medium'>Orders</p>
+        </NavLink>
+
+      </div>
     </div>
   )
 }

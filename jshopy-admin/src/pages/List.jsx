@@ -61,7 +61,16 @@ const List = ({ token }) => {
               <p>{item.category}</p>
               <p>{item.subCategory}</p>
               <p>{currency}{item.price}</p>
-              <p>{item.sizes}</p>
+              {/* <p>{Array.isArray(item.sizes) ? item.sizes.join(', ') : item.sizes}</p> */}
+              <p>
+                <div className="flex gap-1">
+                  {item.sizes.map((size, i) => (
+                    <span key={i} className="px-2 py-1 bg-gray-200 rounded text-xs">
+                      {size}
+                    </span>
+                  ))}
+                </div>
+              </p>
               <p>{item.bestseller === true ? 'Yes' : 'No'}</p>
               <button onClick={() => removeListProduct(item._id)} className='bg-red-600 text-white px-5 py-2 sm:px-7 sm:py-2 rounded-full text-xs sm:text-sm'>Delete</button>
             </div>
