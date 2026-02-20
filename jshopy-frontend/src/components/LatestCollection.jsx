@@ -11,7 +11,7 @@ const LatestCollection = () => {
   useEffect(() => {
     // const sortedProducts = [...products].sort((a, b) => new Date(b.addedDate) - new Date(a.addedDate));
     setLatestProducts(products.slice(0, 10)); // Get the latest 8 products
-  }, []);
+  }, [products]);
   return (
     <div className='my-10'>
       <div className='text-center py-8 text-3xl'>
