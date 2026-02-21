@@ -145,6 +145,7 @@ const ShopContextProvider = (props) => {
         setSearch,
         showSearch,
         setShowSearch,
+        setCartItems,
         cartItems,
         addToCart,
         getCartCount,
